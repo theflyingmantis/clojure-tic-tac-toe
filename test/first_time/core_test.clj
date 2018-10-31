@@ -21,4 +21,12 @@
   (testing "set state sets the state of the board for circle"
            (set-state 1 1 :o)
            (is (= (get-board) {:4 :o, :8 :*})))
+
+  (testing "set state cannot set the state of the board for already filled cell of the board"
+           (set-state 1 1 :*)
+           (is (= (get-board) {:4 :o, :8 :*})))
+
+  (testing "set state cannot set the state of the board for already filled cell of the board"
+           (set-state 0 0 :*)
+           (is (= (get-board) {:4 :o, :8 :*, :0 :*})))
   )

@@ -18,7 +18,9 @@
 
 (defn get-position [x y] (+ (* 3 x) y))
 
-(defn set-state [x y value] (swap! board assoc (keyword (str (get-position x y))) value))
+(defn- free-position [x y]  (= nil (@board (keyword (str (get-position x y))))))
+
+(defn set-state [x y value] (if (free-position x y) (swap! board assoc (keyword (str (get-position x y))) value)))
 
 (defroutes app
   (GET "/" [] (generate-string {:data get-board :error nil}))
