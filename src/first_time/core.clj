@@ -16,6 +16,8 @@
 
 (defn get-board [] @board)
 
+(defn get-position [x y] (+ (* 3 x) y))
+
 (defroutes app
   (GET "/" [] (generate-string {:data get-board :error nil}))
   (route/not-found (generate-string {:data nil :error "route-not-found"})))
