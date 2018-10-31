@@ -18,6 +18,8 @@
 
 (defn get-position [x y] (+ (* 3 x) y))
 
+(defn set-state [x y value] (swap! board assoc (keyword (str (get-position x y))) value))
+
 (defroutes app
   (GET "/" [] (generate-string {:data get-board :error nil}))
   (route/not-found (generate-string {:data nil :error "route-not-found"})))
