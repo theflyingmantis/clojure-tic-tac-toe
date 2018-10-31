@@ -2,6 +2,9 @@
   (:require [clojure.test :refer :all]
             [first-time.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(
+  deftest a-test
+  (testing "initial board state is set empty"
+           (is (= (get-board) {} ))
+           )
+  )

@@ -6,18 +6,19 @@
             [cheshire.core :refer :all])
   )
 
-
-
 (defn app [req]
   {:status  200
    :headers {"Content-Type" "text/html"}
    :body    "hello HTTP!"})
 
 (defonce server (atom nil))
+(defonce board (atom {}))
+
+(defn get-board [] @board)
 
 (defroutes app
-  (GET "/" [] (generate-string {:success true :error nil}))
-  (route/not-found (generate-string {:success false :error "route-not-found"})))
+  (GET "/" [] (generate-string {:data get-board :error nil}))
+  (route/not-found (generate-string {:data nil :error "route-not-found"})))
 
 (defn -main
   "I don't do a whole lot ... yet."
